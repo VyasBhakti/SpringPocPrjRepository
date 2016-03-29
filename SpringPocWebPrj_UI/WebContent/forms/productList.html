@@ -1,0 +1,129 @@
+<!DOCTYPE html> 
+<html>
+    <head>   
+		<title> Product List Page </title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+		
+		<script src="../js/angularBootstrapCommon/angular.js"></script>
+		<script src="../js/angularBootstrapCommon/angular-resource.min.js"></script>
+		<script src="../js/angularBootstrapCommon/jquery-1.11.0.min.js"></script>
+		<script src="../js/angularBootstrapCommon/bootstrap.min.js"></script>
+		
+		
+		<script type="text/javascript" src="../js/productListJs.js"></script>
+		<script type="text/javascript" language="JavaScript">
+			//var product_sub_category_json= {  "Product_sub_category":  [	{"sub_category_id":"s001", "sub_category_name":"Doors and windows", "category_id":"c001", "status":"V"},	{"sub_category_id":"s002", "sub_category_name":"Tables and Beds", "category_id":"c001", "status":"V"},	{"sub_category_id":"s003","sub_category_name":"Lights", "category_id":"c002", "status":"V"},	{"sub_category_id":"s004", "sub_category_name":"Fan", "category_id":"c002","status":"V"},	{"sub_category_id":"s005", "sub_category_name":"Spray Paint", "category_id":"c003", "status":"V"},	{"sub_category_id":"s006","sub_category_name":"Primers", "category_id":"c003", "status":"V"}  ]};
+			//var product_json = {  "Product":  [  	{"productId":"002", "sku":"p002", "supplierProductId":"sup01", "productName":"LED Light","productDescription":"xxx", "supplierId":"003",  "subCategoryId":"s003", "quantityPerUnit":"001", "unitsInStock":"10", "unitsOnOrder":"2", "reorderLevel":"8", "unitSize":"unit", 		  "unitPrice":"100.00", "msrp":"100.00", "availableSize":"No", "availableColors":"0","discount_available":"false", "discount":"0", "unitWeight":"0",		  "productAvailable":"true", "picture":"abc.jpg", "note":"glass" }, {"productId":"003", "sku":"p003", "supplierProductId":"sup01", "productName":"Ceiling Fan", "productDescription":"xxx", "supplierId":"002", 		 "subCategoryId":"s004", "quantityPerUnit":"2", "unitsInStock":"10", "unitsOnOrder":"2", "reorderLevel":"8", "unitSize":"unit", 		 "unitPrice":"1000.00", "msrp":"1000.00", "availableSize":"NO", "availableColors":"4", "discount_available":"true", "discount":"5", "unitWeight":"0","productAvailable":"true", "picture":"abc.jpg", "note":"plastic" }, 	{"productId":"004", "sku":"p004", "supplierProductId":"sup01","productName":"Interior Paint", "productDescription":"xxx", "supplierId":"004", 		  "subCategoryId":"s005", "quantityPerUnit":"001","unitsInStock":"10", "unitsOnOrder":"2", "reorderLevel":"8", "unitSize":"unit", 		  "unitPrice":"700.00", "msrp":"700.00", "availableSize":"No", "availableColors":"80", "discount_available":"false", "discount":"0", "unitWeight":"0",	  "productAvailable":"true", "picture":"abc.jpg", "note":"-" }, 	{"productId":"005", "sku":"p005", "supplierProductId":"sup01", "productName":"Exterior Paint","productDescription":"xxx", "supplierId":"004", 		  "subCategoryId":"s005", "quantityPerUnit":"001", "unitsInStock":"10", "unitsOnOrder":"2","reorderLevel":"8", "unitSize":"unit", 		  "unitPrice":"500.00", "msrp":"500.00", "availableSize":"No", "availableColors":"50","discount_available":"false", "discount":"0", "unitWeight":"0",		  "productAvailable":"true", "picture":"abc.jpg", "note":"-" } ] };
+		</script>
+	</head>
+	<body data-spy="scroll" data-target=".navbar" data-offset="60" >
+		<center>
+		<form name="frm_product_list" id="frm_product_list" method="post" action="" >
+				<div class="jumbotron col-xs-12">
+				  <div class="container text-center">
+					<h1>Online Store</h1>      
+					<p>Mission, Vission & Values</p>
+				  </div>
+				</div>
+
+				<nav class="navbar navbar-inverse col-xs-12">
+				  <div class="collapse navbar-collapse" id="myNavbar">
+					  <ul class="nav navbar-nav">
+						<li> <a href="#">Home</a></li>
+						<li class="active"><a href="#Products">Products</a></li>
+						<li><a href="#Deals">Deals</a></li>
+						<li><a href="#Stores">Stores</a></li>
+						<li><a href="#Contact">Contact</a></li>
+					  </ul>
+					  <ul class="nav navbar-nav navbar-right">
+						<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Register</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+					  </ul>
+					</div>
+				 
+				</nav>
+				<div class="container input-group col-xs-12">
+				  <span class="input-group-addon" id="txt_product_search_span">Search</span>
+				  <input type="text" class="form-control" placeholder="Products" id="txt_product_search" onkeypress="javascript:call_search(this);">
+				</div> <br/>
+				<div id="product_list" class="panel panel-info" >    
+					<div class ="panel-heading">
+						  <h3 class="panel-title" align="left" >Product List </h3>
+					</div>
+					<div class = "panel-body">
+						<div class="col-sm-2 container-fluid"  align='left' id="category_menu">
+							
+						</div>
+						<div class="container col-lg-10">
+							<div id="product_list_items" class="panel panel-danger" >    
+								<div class ="panel-heading">
+									  <h3 class="panel-title" align="left" >
+										<label for="show_heading" > Products in the Cart </label>
+									  </h3>
+								</div>
+								<div class = "panel-body" id="show_details" >
+									
+									<div class="row text-center">
+										<div class="col-sm-2">
+										  <div class="thumbnail">
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 1">
+											<p><strong>Product 1</strong></p>
+											<p>Description: XXX</p>
+										  </div>
+										</div>
+									
+										<div class="col-sm-2">
+											<div class="thumbnail"> 
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 2">
+											<p><strong>Product 2</strong></p>
+											<p>YYY..</p>
+											</div>
+										</div>
+										
+										<div class="col-sm-2">
+											<div class="thumbnail">
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 3">
+											<p><strong>Product 3</strong></p>
+											<p>desc..</p>
+											</div>
+										</div>
+									</div>
+									<br><br>
+									<div class="row">
+										<div class="col-sm-2">
+											<div class="thumbnail">
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 4">
+											<p><strong>Product 4</strong></p>
+											<p>XXX..</p>
+											</div>
+										</div>
+									
+										<div class="col-sm-2">
+											<div class="thumbnail">
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 5">
+											<p><strong>Product 5</strong></p>
+											<p>YYY..</p>
+											</div>
+										</div>
+										
+										<div class="col-sm-2">
+											<div class="thumbnail">
+											<img src="http://placehold.it/150x80?text=IMAGE" alt="product 5">
+											<p><strong>Product 6</strong></p>
+											<p>desc..</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> <!--product_list_items -->
+						</div>
+					</div> <!-- product_list panel body --> 
+				</div> <!--panel panel-info -->
+			</div>	
+		</form>
+		</center>
+	</body>
+</html>
